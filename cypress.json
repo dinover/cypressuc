@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://203.ucontactcloud.com",
+  "projectId": "k8xgbm",
+  "chromeWebSecurity": false,
+  "viewportWidth": 1343,
+  "viewportHeight": 800,
+  "defaultCommandTimeout": 30000
+}
