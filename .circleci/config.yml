@@ -1,37 +1,59 @@
-# JavaScript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
-version: 2
-jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:7.10
+# first, install Cypress, then run all tests (in parallel)
+stages:
+  - build
+  - test
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
+# to cache both npm modules and Cypress binary we use environment variables
+# to point at the folders we can list as paths in "cache" job settings
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
 
-    working_directory: ~/repo
+# cache using branch name
+# https://gitlab.com/help/ci/caching/index.md
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+    - cache/Cypress
+    - node_modules
 
+# this job installs NPM dependencies and Cypress
+install:
+  image: cypress/base:10
+  stage: build
+
+  script:
+    - npm ci
+    # check Cypress binary path and cached versions
+    # useful to make sure we are not carrying around old versions
+    - npx cypress cache path
+    - npx cypress cache list
+    - $(npm bin)/print-env CI
+    - npm run cy:verify
+  
+  # all jobs that actually run tests can use the same definition
+  .job_template:
+    image: cypress/base:10
+    stage: test
+    script:
+      # print CI environment variables for reference
+      - $(npm bin)/print-env CI
+      # start the server in the background
+      - npm run start:ci &
+      # run Cypress test in load balancing mode
+      - npm run e2e:record -- --parallel --group "electrons on GitLab CI"
+    artifacts:
+      when: always
+      paths:
+        - cypress/videos/**/*.mp4
+        - cypress/screenshots/**/*.png
+      expire_in: 1 day
+    parallelism: 4
     steps:
       - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      - run: ls -l ~/repo
+      # note: omitting caching for brevity
+      # quickly install NPM dependencies
+      - npm ci
+      # load balance all tests across 4 CI machines
+      - $(npm bin)/cypress run --parallel
