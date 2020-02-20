@@ -1,7 +1,7 @@
 script:
     - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./travis/run_on_pull_requests; fi'
     - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./travis/run_on_non_pull_requests; fi'
-    
+
 language: node_js
 node_js: 
       # Node 10.3+ includes npm@6 which has good "npm ci" command
@@ -38,7 +38,7 @@ jobs:
   include:
     # we have multiple jobs to execute using just a single stage
     # but we can pass group name via environment variable to Cypress test runner
-    - stage: test
-        env: 
-        - CI_THREAD_INDEX="3x-chrome"
-        <<: *defaults
+        - script:
+            name: "Cypress with travis"
+            env: CI_THREAD_INDEX=3x-chrome
+            <<: *defaults
