@@ -1,3 +1,7 @@
+script:
+    - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./travis/run_on_pull_requests; fi'
+    - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./travis/run_on_non_pull_requests; fi'
+    
 language: node_js
 node_js: 
       # Node 10.3+ includes npm@6 which has good "npm ci" command
