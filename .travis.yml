@@ -38,7 +38,8 @@ jobs:
   include:
     # we have multiple jobs to execute using just a single stage
     # but we can pass group name via environment variable to Cypress test runner
-        - script:
-            name: "Cypress with travis"
-            env: CI_THREAD_INDEX=3x-chrome
-            <<: *defaults
+        - stage:
+            script:
+                - name: "Cypress with travis"
+                - env: CI_THREAD_INDEX=3x-chrome
+                - <<: *defaults
