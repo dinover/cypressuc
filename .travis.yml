@@ -25,9 +25,9 @@ env:
 defaults: &defaults
   script:
     #   ## print all Travis environment variables for debugging
-        - $(npm bin)/print-env TRAVIS
-        - npm run start:ci &
-        - npm run cy:run -- --record --key $CY_KEY --parallel --group $CI_THREAD_INDEX --ci-build-id Deploy-$CI_THREAD_INDEX-$TRAVIS_BUILD_ID 
+        - ng serve --prod &
+        - $(npm bin)/wait-on http-get://localhost:4200/#
+        - npm run cy:run:all -- --record --key $CY_KEY --parallel --group $CI_THREAD_INDEX --ci-build-id Deploy-$CI_THREAD_INDEX-$TRAVIS_BUILD_ID 
         # after all tests finish running we need
         # to kill all background jobs (like "npm start &")
         - kill $(jobs -p) || true
