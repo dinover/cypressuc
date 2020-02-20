@@ -40,6 +40,6 @@ jobs:
     # but we can pass group name via environment variable to Cypress test runner
         - stage:
             script:
-                - name: "Cypress with travis"
-                - env: CI_THREAD_INDEX=3x-chrome
-                - <<: *defaults
+                name: "Cypress with travis"
+                env: CI_THREAD_INDEX=3x-chrome
+                <<: *defaults
