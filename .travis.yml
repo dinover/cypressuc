@@ -1,0 +1,32 @@
+sudo: false
+language: node_js
+node_js: "10"
+
+env:
+    global:
+        - CY_KEY=6d187511-4bf6-4de2-98e4-042d4d075189
+        - CI_THREAD_INDEX="/cypress/integration/Sections/*"
+
+#  For future usage
+# stages:
+#   - name: Testing
+#     if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
+#   - name: deploy
+#     if: branch = development AND type = push OR tag =~ ^v\d+
+#   - name: publish
+#     if: tag =~ ^v\d+
+#   - name: "post deploy testing"
+#     if: branch = development AND type = push OR tag =~ ^v\d+
+
+
+testSmokeCy:  &testSmokeCy
+    - script:
+       - ng serve --prod & 
+       - $(npm bin)/wait-on http-get://localhost:4200/#
+       - npm run cy:run:smoke -- --record --key $CY_KEY --parallel --group $CI_THREAD_INDEX
+       - kill $(jobs -p) || true
+
+    - script:
+        name: "Cypress smoke tests"
+        env: CI_THREAD_INDEX=3x-chrome
+        <<: *testSmokeCy
