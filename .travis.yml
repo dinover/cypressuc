@@ -1,6 +1,5 @@
 script:
     - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./travis/run_on_pull_requests; fi'
-    - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./travis/run_on_non_pull_requests; fi'
 
 language: node_js
 node_js: 
@@ -30,7 +29,7 @@ defaults: &defaults
     #   ## print all Travis environment variables for debugging
         - $(npm bin)/print-env TRAVIS
         - npm run start:ci &
-        - npm run cy:run -- --record --key $CY_KEY --parallel --group $CI_THREAD_INDEX
+        - npm run cy:run -- --record --key $CY_KEY --parallel --group $CI_THREAD_INDEX --ci-build-id Deploy-$CI_THREAD_INDEX-$TRAVIS_BUILD_ID 
         # after all tests finish running we need
         # to kill all background jobs (like "npm start &")
         - kill $(jobs -p) || true
