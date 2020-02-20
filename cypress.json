@@ -4,5 +4,7 @@
   "chromeWebSecurity": false,
   "viewportWidth": 1343,
   "viewportHeight": 800,
-  "defaultCommandTimeout": 30000
+  "defaultCommandTimeout": 30000,
+  "video": false,
+  "ignoreTestFiles": "/cypress/integration/others/*" 
 }
