@@ -5,6 +5,7 @@ language: node_js
 node_js: 
       # Node 10.3+ includes npm@6 which has good "npm ci" command
     - 10.8
+os: linux
 addons:
     apt:
         packages:
@@ -14,14 +15,11 @@ cache:
     directories:
         - ~/.npm
         - ~/.cache
-    override:
-        - npm ci
-        - npm run cy:verify
 
 env:
     global:
         - CY_KEY=6d187511-4bf6-4de2-98e4-042d4d075189
-        - CI_THREAD_INDEX="/cypress/integration/Sections/*"
+        - CI_THREAD_INDEX=/cypress/integration/Sections/*
 
 
 defaults: &defaults
@@ -37,8 +35,7 @@ jobs:
   include:
     # we have multiple jobs to execute using just a single stage
     # but we can pass group name via environment variable to Cypress test runner
-        - stage:
-            script:
-                name: "Cypress with travis"
-                env: CI_THREAD_INDEX=3x-chrome
-                <<: *defaults
+        script:
+            name: "Cypress with travis"
+            env: CI_THREAD_INDEX=3x-chrome
+            <<: *defaults
