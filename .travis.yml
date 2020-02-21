@@ -21,7 +21,6 @@ env:
         - CY_KEY=6d187511-4bf6-4de2-98e4-042d4d075189
         - CI_THREAD_INDEX=/cypress/integration/Sections/*
 
-
 defaults: &defaults
   script:
     #   ## print all Travis environment variables for debugging
