@@ -5,6 +5,7 @@
 FROM cypress/base:10
 RUN node --version
 RUN npm --version
+WORKDIR /home/node/app
 # copy Cypress tests
 COPY cypress.json cypress ./
 COPY cypress ./cypress
