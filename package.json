@@ -1,5 +1,5 @@
 {
-  "name": "cypress-example-kitchensink",
+  "name": "cypress-example",
   "version": "0.0.0-development",
   "description": "This is an example app used to showcase Cypress.io testing. For a full reference of our documentation, go to https://docs.cypress.io",
   "main": "index.js",
@@ -46,17 +46,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cypress-io/cypress-example-kitchensink.git"
-  },
-  "author": "Brian Mann",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cypress-io/cypress-example-kitchensink/issues"
-  },
-  "homepage": "https://github.com/cypress-io/cypress-example-kitchensink#readme",
-  "dependencies": {
-    "npm-run-all": "^4.1.2",
-    "serve": "11.3.0"
+    "url": "https://github.com/dinover/cypressuc.git"
   },
   "devDependencies": {
     "@bahmutov/print-env": "1.2.0",
