@@ -44,8 +44,8 @@ jobs:
           browser: chrome
           record: true
           parallel: true
-          parallelism: 2
-          group: '2x-chrome on CircleCI'
+          parallelism: 1
+          group: '1x-chrome on CircleCI'
           start: 'npm run start:ci'
 
       - release:
