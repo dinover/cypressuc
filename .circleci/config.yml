@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/app
   docker:
-    - image: cypress/browsers:chrome69
+    - image: cypress/browsers:chrome76
 
 version: 2
 jobs:
@@ -41,7 +41,7 @@ jobs:
   2x-chrome:
     <<: *defaults
     # execute this job on 2 CI machines
-    parallelism: 1
+    parallelism: 2
     steps:
       - attach_workspace:
           at: ~/

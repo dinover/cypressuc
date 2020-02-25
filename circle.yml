@@ -18,13 +18,13 @@ jobs:
           - cypress/install
         name: '2 machines using Chrome'
           # use executor with Chrome installed
-        executor: cypress/browsers-chrome69
+        executor: cypress/browsers-chrome76
         browser: chrome
         record: true
         key: 
         parallel: true
         parallelism: 2
-        group: '1x-chrome on CircleCI'
+        group: '2x-chrome on CircleCI'
         spec: cypress/integration/Sections/*
         start: 'npm run start:ci'
 
@@ -34,4 +34,4 @@ jobs:
               only:
                 - master
           requires:
-            - 1 machines
+            - 2 machines
