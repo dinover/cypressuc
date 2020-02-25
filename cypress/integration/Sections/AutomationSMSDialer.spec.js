@@ -2,7 +2,7 @@ context('SMS dialer configuration', () => {
 // Se comentan los wait para que queden mientras usamos la configuración con timeout 30000
 
     it('Supervisor successfull login', function() {
-        cy.visit("https://203.ucontactcloud.com")
+        cy.visit("https://oficina.ucontactcloud.com")
         cy.get('#cmbRol_chosen').click()
         cy.get('.active-result').contains('Supervisor').click({force: true})
         cy.get('#cmbIdiomas_chosen').click() //Abro idiomas y veo cual esta seleccionado, siempre entro en Ingles
@@ -13,7 +13,7 @@ context('SMS dialer configuration', () => {
             })
         cy.get('[name="user"]').type('SuperUserSMS')
         cy.get('[name="pass"]').type('123456{enter}')
-        cy.location('href').should('contain', '203.ucontactcloud.com').then(($portal) => {
+        cy.location('href').should('contain', 'oficina.ucontactcloud.com').then(($portal) => {
             if($portal.valueOf().includes('/views/portal')) {
 
             } else {
@@ -110,7 +110,7 @@ context('SMS dialer configuration', () => {
             if(text == 0) {
                 cy.request({
                     method: 'POST',
-                    url: 'https://203.ucontactcloud.com/Integra/resources/SMS/uploadbase', // baseUrl is prepended to url
+                    url: 'https://oficina.ucontactcloud.com/Integra/resources/SMS/uploadbase', // baseUrl is prepended to url
                     form: true, // indicates the body should be form urlencoded and sets Content-Type: application/x-www-form-urlencoded headers
                     body: {
                         filename: 'automationSMS.csv',

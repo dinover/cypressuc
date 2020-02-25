@@ -1,7 +1,7 @@
 context('Automation Webchat', () => {
 
     it('Supervisor successfull login', function() {
-        cy.visit("https://203.ucontactcloud.com")
+        cy.visit("https://oficina.ucontactcloud.com")
         cy.get('#cmbRol_chosen').click()
         cy.get('.active-result').contains('Supervisor').click({force: true})
         cy.get('#cmbIdiomas_chosen').click() //Abro idiomas y veo cual esta seleccionado, siempre entro en Ingles
@@ -12,7 +12,7 @@ context('Automation Webchat', () => {
             })
         cy.get('[name="user"]').type('SuperUserWebchat')
         cy.get('[name="pass"]').type('123456{enter}')
-        cy.location('href').should('contain', '203.ucontactcloud.com').then(($portal) => {
+        cy.location('href').should('contain', 'oficina.ucontactcloud.com').then(($portal) => {
             if($portal.valueOf().includes('/views/portal')) {
 
             } else {
@@ -154,7 +154,7 @@ context('Start interaction and answer', () => {
     it('Sending webchat', function() {
         cy.restoreLocalStorage()
         // Ahora hago visit para que el agente quede rergistrado y figure disponible
-            cy.visit("https://203.ucontactcloud.com/webchatclient/example.html?campaign=AutomatedWebchat")
+            cy.visit("https://oficina.ucontactcloud.com/webchatclient/example.html?campaign=AutomatedWebchat")
             cy.wait(3000)
             cy.get('#integrawebchatmaindivcontent').then(($isopen) => {
                 if($isopen.hasClass('isWebchatOpen')) {
@@ -191,7 +191,7 @@ context('Start interaction and answer', () => {
     it('Agent1 login', function(){
         cy.restoreLocalStorage()
         // Inicio sesion como agente2
-        cy.visit("https://203.ucontactcloud.com")
+        cy.visit("https://oficina.ucontactcloud.com")
         cy.get('#cmbRol_chosen').click()
         cy.get('.active-result').contains('Agent').click()
             cy.get('#cmbIdiomas_chosen').click() //Abro idiomas y veo cual esta seleccionado, siempre entro en Ingles

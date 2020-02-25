@@ -2,7 +2,7 @@ context('Upload dialer base', () => {
 
     it('Sending webchat', function() {
         // Ahora hago visit para que el agente quede rergistrado y figure disponible
-            cy.visit("https://203.ucontactcloud.com/webchatclient/example.html?campaign=AutomatedWebchat")
+            cy.visit("https://oficina.ucontactcloud.com/webchatclient/example.html?campaign=AutomatedWebchat")
             cy.wait(3000)
             cy.get('#integrawebchatmaindivcontent').then(($isopen) => {
                 if($isopen.hasClass('isWebchatOpen')) {

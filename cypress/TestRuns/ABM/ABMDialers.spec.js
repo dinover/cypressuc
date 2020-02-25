@@ -1,7 +1,7 @@
 context('Dialers ABM', () => {
 
     it('Supervisor Successful Login', function(){
-        cy.visit("https://203.ucontactcloud.com")
+        cy.visit("https://oficina.ucontactcloud.com")
         cy.get('#cmbRol_chosen').click()
         cy.get('.active-result').contains('Supervisor').click()
         cy.get('[name="user"]').type('Integra')

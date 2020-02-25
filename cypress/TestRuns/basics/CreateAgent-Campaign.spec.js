@@ -1,7 +1,7 @@
 context('Create Automation Agent and assign to campaign', () => {
 
     it('Supervisor Successful Login', function(){
-        cy.visit("https://203.ucontactcloud.com")
+        cy.visit("https://oficina.ucontactcloud.com")
         cy.get('#cmbRol_chosen').click()
         cy.get('.active-result').contains('Supervisor').click({force: true}) //Selecciona Perfil
             cy.get('#cmbIdiomas_chosen').click() //Abro idiomas y veo cual esta seleccionado, siempre entro en Ingles
@@ -12,7 +12,7 @@ context('Create Automation Agent and assign to campaign', () => {
             })
         cy.get('[name="user"]').type('Integra')
         cy.get('[name="pass"]').type('1nt3gr4{enter}')
-        cy.location('href').should('contain', '203.ucontactcloud.com').then(($portal) => {
+        cy.location('href').should('contain', 'oficina.ucontactcloud.com').then(($portal) => {
             if($portal.valueOf().includes('/views/portal')) {
 
             } else {

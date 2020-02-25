@@ -1,7 +1,7 @@
 context('Login Validations Agent/Supervisor', () => {
 
     it('Login with Nothing', function(){
-        cy.visit("https://203.ucontactcloud.com")
+        cy.visit("https://oficina.ucontactcloud.com")
         cy.get('#btnLogin').click()
         cy.get('#toast-container').contains('Please enter a valid username and password')
     })  

@@ -1,7 +1,7 @@
 context('Agent actions', () => {
     
     it('Agent Successful Login', function(){
-        cy.visit("https://203.ucontactcloud.com")
+        cy.visit("https://oficina.ucontactcloud.com")
             cy.get('#cmbRol_chosen').click()
             cy.get('.active-result').contains('Agent').click() //Selecciona Perfilr
             cy.get('#cmbIdiomas_chosen').click() //Abro idiomas y veo cual esta seleccionado, siempre entro en Ingles

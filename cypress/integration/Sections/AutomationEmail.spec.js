@@ -2,7 +2,7 @@ context('Email Automation', () => {
 // Se comentan los wait para que queden mientras usamos la configuración con timeout 30000
 
     it('Supervisor successfull login', function() {
-        cy.visit("https://203.ucontactcloud.com")
+        cy.visit("https://oficina.ucontactcloud.com")
         cy.get('#cmbRol_chosen').click()
         cy.get('.active-result').contains('Supervisor').click({force: true})
         cy.get('#cmbIdiomas_chosen').click() //Abro idiomas y veo cual esta seleccionado, siempre entro en Ingles
@@ -14,7 +14,7 @@ context('Email Automation', () => {
         cy.get('[name="user"]').type('SuperUserEmail')
         cy.get('[name="pass"]').type('123456{enter}')
         cy.wait(3000)
-        cy.location('href').should('contain', '203.ucontactcloud.com').then(($portal) => {
+        cy.location('href').should('contain', 'oficina.ucontactcloud.com').then(($portal) => {
             if($portal.valueOf().includes('/views/portal')) {
 
             } else {
