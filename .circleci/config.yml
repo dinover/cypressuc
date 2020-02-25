@@ -17,6 +17,7 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm ci
+      - run: npm install -D cypress-plugin-tab
       # run verify and then save cache.
       # this ensures that the Cypress verified status is cached too
       - run: npm run cy:verify
