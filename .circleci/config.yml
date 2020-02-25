@@ -47,7 +47,7 @@ jobs:
       - run:
           command: npm start
           background: true
-      - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB --browser chrome
+      - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB --browser chrome --key 6d187511-4bf6-4de2-98e4-042d4d075189
 
 workflows:
   version: 2
